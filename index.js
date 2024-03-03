@@ -3,6 +3,16 @@ const card_tag = document.querySelector('.card');
 const ulTag = document.querySelector('.card-content');
 
 document.getElementById('Search-btn').addEventListener('click', () => {
+    call_the_function();
+});
+
+document.querySelector('input').onkeydown = (event) => {
+    if(event.key === 'Enter'){
+        call_the_function();
+    };
+};
+
+function call_the_function() {
     const searchValue = document.querySelector('input').value.trim();
     if (searchValue !== '') {
         loader.style.display = 'block';
@@ -13,7 +23,7 @@ document.getElementById('Search-btn').addEventListener('click', () => {
             getWordDefinition(searchValue);
         }, 3000);
     };
-});
+};
 
 const getWordDefinition = async function (word) {
     const data = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`);
